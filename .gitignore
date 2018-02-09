@@ -9,3 +9,5 @@ selenium-debug.log
 
 build/deploys/heroku/release/**
 !build/deploys/heroku/release/.gitkeep
+
+Icon?
