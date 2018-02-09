@@ -3,18 +3,18 @@
         <!-- This tutorial is gold:
         https://medium.com/codingthesmartway-com-blog/vue-js-2-vue-resource-real-world-vue-application-with-external-api-access-c3de83f25c00 -->
         <SourceSelection v-on:sourceChanged="this.sourceChanged"></SourceSelection>
-        <ItemList :source="this.source"></ItemList>
+        <SessionList :source="this.source"></SessionList>
     </div>
 </template>
 
 <script>
-    import ItemList from 'components/ItemList'
+    import SessionList from 'components/sessionList'
     import SourceSelection from 'components/SourceSelection'
 
     export default {
         name: 'frontpage',
         components: {
-            ItemList,
+            SessionList,
             SourceSelection,
         },
         data() {
