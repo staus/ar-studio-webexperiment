@@ -1,0 +1,42 @@
+{
+    "root": true,
+    "parserOptions": {
+        "sourceType": "module"
+    },
+    "env": {
+        "browser": true,
+        "node": true
+    },
+    "globals": {
+        "debug": true,
+        "ENV": true
+    },
+    "extends": "airbnb-base",
+    "rules": {
+        "semi": ["error", "never"],
+        "indent": ["error", 4],
+        "linebreak-style": ["error", "unix"],
+        "object-shorthand": ["warn", "always"],
+        "func-names": ["error", "as-needed"],
+        "import/extensions": ["error", "always", {
+            "js": "never",
+            "vue": "never"
+        }],
+        "no-param-reassign": [1, { "props": false }],
+        "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+        "max-len": "off",
+        "no-unused-vars": "off",
+        "no-undef": "off",
+        "no-bitwise": "off"
+    },
+    "plugins": [
+        "html", "import"
+    ],
+    "settings": {
+        "import/resolver": {
+            "webpack": {
+                "config": "build/webpack/packs/base.js"
+            }
+        }
+    }
+}
