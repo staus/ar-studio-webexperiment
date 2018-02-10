@@ -24,6 +24,7 @@ export default {
             scene: null,
             camera: null,
             controls: null,
+            shaderMaterial: null,
         }
     },
     mounted() {
@@ -37,6 +38,7 @@ export default {
     },
     methods: {
         init() {
+            // document.getElementsByTagName('ul')[0].style.backgroundImage = 'url(static/explosion.png)'
             this.renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('scene') })
             this.renderer.setClearColor(0x3F3F3F)
             this.renderer.setPixelRatio(window.devicePixelRatio)
@@ -75,17 +77,27 @@ export default {
         },
         setupObjects() {
             let geometry = new THREE.BoxGeometry(50, 50, 50)
-            let material = new THREE.MeshLambertMaterial({ color: 0x00ff00 })
+            const material = new THREE.MeshLambertMaterial({ color: 0x00ff00 })
             const cube = new THREE.Mesh(geometry, material)
             // this.scene.add(cube)
 
             geometry = new THREE.IcosahedronGeometry(20, 4)
             // material = new THREE.MeshBasicMaterial({ color: 0xb7ff00, wireframe: true })
-            material = new THREE.ShaderMaterial({
+            this.shaderMaterial = new THREE.ShaderMaterial({
+                uniforms: {
+                    tExplosion: {
+                        type: 't',
+                        value: THREE.ImageUtils.loadTexture('static/explosion.png'),
+                    },
+                    time: { // float initialized to 0
+                        type: 'f',
+                        value: 0.0,
+                    },
+                },
                 vertexShader: document.getElementById('vertexShader').textContent,
                 fragmentShader: document.getElementById('fragmentShader').textContent,
             })
-            const metaball = new THREE.Mesh(geometry, material)
+            const metaball = new THREE.Mesh(geometry, this.shaderMaterial)
             this.scene.add(metaball)
         },
         setupLights() {
@@ -95,6 +107,7 @@ export default {
         },
         animate() {
             requestAnimationFrame(this.animate)
+            this.shaderMaterial.uniforms.time.value = 0.00025 * (Date.now() - this.start)
             this.controls.update()
             this.renderer.render(this.scene, this.camera)
         },
