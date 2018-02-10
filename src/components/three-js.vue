@@ -46,7 +46,7 @@ export default {
         },
         setupCamera() {
             this.camera = new THREE.PerspectiveCamera(50, this.ww / this.wh, 1, 10000)
-            this.camera.position.set(0, 250, 700)
+            this.camera.position.set(0, 0, 80)
             this.camera.lookAt(new THREE.Vector3(0, 0, 0))
             this.scene.add(this.camera)
             window.addEventListener('resize', this.resize)
@@ -59,10 +59,15 @@ export default {
             this.camera.updateProjectionMatrix()
         },
         setupObjects() {
-            const geometry = new THREE.BoxGeometry(50, 50, 50)
-            const texture = new THREE.MeshLambertMaterial({ color: 0x00ff00 })
-            const cube = new THREE.Mesh(geometry, texture)
-            this.scene.add(cube)
+            let geometry = new THREE.BoxGeometry(50, 50, 50)
+            let material = new THREE.MeshLambertMaterial({ color: 0x00ff00 })
+            const cube = new THREE.Mesh(geometry, material)
+            // this.scene.add(cube)
+
+            geometry = new THREE.IcosahedronGeometry(20, 4)
+            material = new THREE.MeshBasicMaterial({ color: 0xb7ff00, wireframe: true })
+            const metaball = new THREE.Mesh(geometry, material)
+            this.scene.add(metaball)
         },
         setupLights() {
             const light = new THREE.DirectionalLight(0xffffff, 1)
