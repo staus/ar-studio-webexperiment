@@ -118,6 +118,11 @@ faceRotX.monitor().subscribe(function (e) {
     floorPosition.transform.y = floorY
     rowY = Math.round(floorY / 10)
     if (rowYprev != rowY) {
+        if (rowYprev < rowY) {
+            
+        } else {
+
+        }
         rowYprev = rowY
         Diagnostics.log('rowY: ' + rowY)
     }

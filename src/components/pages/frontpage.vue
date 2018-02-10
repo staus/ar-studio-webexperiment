@@ -51,11 +51,12 @@
     }
 </script>
 
-<style lang="scss" scoped>
-// @import 'assets/styles/app';
-.logo {
-    width: 105px;
-    display: inline-block;
-    vertical-align: middle;
+<style lang="scss">
+body{
+    margin: 0;
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
 }
 </style>

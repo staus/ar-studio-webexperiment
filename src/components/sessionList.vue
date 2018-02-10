@@ -1,5 +1,6 @@
 <template>
     <ul class="session-list">
+        <h2>Active connections:</h2>
         <Session v-for="(item, key) in itemList" :name="key" :session="item"/>
     </ul>
 </template>
@@ -21,13 +22,14 @@ export default {
 }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-    .item-object {
-        width: 128px;
-        padding: 10px;
-    }
-    .item {
-        border-top: 1px solid lightgray;
-        padding-top: 20px;
+<style lang="scss" scoped>
+    ul{
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        background-color: rgba(255,255,255,0.4);
+        padding: 20px;
+        margin: 0;
+        box-sizing: border-box;
     }
 </style>

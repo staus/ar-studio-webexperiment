@@ -1,8 +1,9 @@
 <template>
     <li class="session" v-if="Date.now() - (session.timestamp + session.lastTime) <= 2000">
         <h3>{{name}}</h3>
-        <span>Language: {{session.locale}}</span>
-        <span v-if="Date.now() - (session.timestamp + session.lastTime) <= 3000">streaming {{Date.now() - (session.timestamp + session.lastTime)}}</span>
+        <p>Language: {{session.locale}}</p>
+        <p>Streaming {{Date.now() - (session.timestamp + session.lastTime)}}</p>
+        <p>Minutes left: {{Math.round((600000-(Date.now() - session.timestamp))/600)/ 100}}</p>
         <ul>
             <!--<li v-for="(item, index) in session.stream">Time: {{item.time}}
                 <span v-for="(frame, index) in item.frames">{{frame}}, </span>
@@ -26,3 +27,13 @@ export default {
     },
 }
 </script>
+
+<style lang="scss" scoped>
+    li{
+        list-style-type: none;
+        margin: 0;
+        h3, p{
+            margin: 0;
+        }
+    }
+</style>
