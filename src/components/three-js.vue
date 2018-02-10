@@ -23,12 +23,14 @@ export default {
             renderer: null,
             scene: null,
             camera: null,
+            controls: null,
         }
     },
     mounted() {
         this.init()
         this.setupScene()
         this.setupCamera()
+        this.setupControls()
         this.setupObjects()
         this.setupLights()
         this.animate()
@@ -52,6 +54,17 @@ export default {
             this.camera.lookAt(new THREE.Vector3(0, 0, 0))
             this.scene.add(this.camera)
             window.addEventListener('resize', this.resize)
+        },
+        setupControls() {
+            this.controls = new THREE.OrbitControls(this.camera)
+            this.controls.enablePan = false
+            this.controls.enableZoom = false
+            this.controls.autoRotate = true
+            this.controls.autoRotateSpeed = -2
+            this.controls.enableDamping = false
+            this.controls.dampingFactor = 1.3
+            this.controls.rotateSpeed = 0.2
+            this.controls.update()
         },
         resize() {
             this.ww = window.innerWidth
@@ -82,6 +95,7 @@ export default {
         },
         animate() {
             requestAnimationFrame(this.animate)
+            this.controls.update()
             this.renderer.render(this.scene, this.camera)
         },
     },
