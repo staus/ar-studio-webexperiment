@@ -25,7 +25,10 @@ export default {
         }
     },
     mounted() {
-        this.getData('')
+        this.getData()
+        setInterval(() => {
+            this.getData()
+        }, 1000)
     },
     methods: {
         /* getIdToken() {
@@ -48,7 +51,7 @@ export default {
                     this.item_list = response.data.articles
                 })
         }, */
-        getData(idToken) {
+        getData() {
             this.$http.get(`https://ar-studio-webexperiment.firebaseio.com/sessions.json?auth=${this.credentials}`, {
                 method: 'GET',
             }).then((result) => {

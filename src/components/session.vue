@@ -1,7 +1,12 @@
 <template>
     <li class="session">
         <h3>{{name}}</h3>
-        <p>{{session}}</p>
+        <span>Language: {{session.locale}}</span>
+        <ul>
+            <li v-for="(item, index) in session.stream">Time: {{item.time}}
+                <!--<span v-for="(frame, index) in item.frames">{{frame}}, </span> -->
+            </li>
+        </ul>
     </li>
 </template>
 
