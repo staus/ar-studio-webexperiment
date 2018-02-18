@@ -6,13 +6,9 @@
 export default {
     name: 'three-js',
     props: {
-        name: {
-            type: String,
-            required: false,
-        },
-        session: {
+        itemList: {
             type: Object,
-            required: false,
+            required: true,
         },
     },
     data() {
@@ -36,6 +32,13 @@ export default {
         this.setupLights()
         this.animate()
     },
+    /* computed: {
+        itemList: function () {
+            // `this` points to the vm instance
+            // return this.message.split('').reverse().join('')
+            console.log('yo')
+        },
+    }, */
     methods: {
         init() {
             // document.getElementsByTagName('ul')[0].style.backgroundImage = 'url(static/explosion.png)'
@@ -48,7 +51,7 @@ export default {
         },
         setupScene() {
             this.scene = new THREE.Scene()
-            this.scene.fog = new THREE.Fog(0x3f3f3f, 500, 1000)
+            this.scene.fog = new THREE.Fog(0x3f3f3f, 10, 150)
         },
         setupCamera() {
             this.camera = new THREE.PerspectiveCamera(50, this.ww / this.wh, 1, 10000)
@@ -93,9 +96,18 @@ export default {
                         type: 'f',
                         value: 0.0,
                     },
+                    /* topColor: { type: 'c', value: new THREE.Color(0x0077ff) },
+                    bottomColor: { type: 'c', value: new THREE.Color(0xffffff) },
+                    offset: { type: 'f', value: 33 },
+                    exponent: { type: 'f', value: 0.6 },
+                    fogColor: { type: 'c', value: this.scene.fog.color },
+                    fogNear: { type: 'f', value: this.scene.fog.near },
+                    fogFar: { type: 'f', value: this.scene.fog.far }, */
                 },
                 vertexShader: document.getElementById('vertexShader').textContent,
                 fragmentShader: document.getElementById('fragmentShader').textContent,
+            /* side: THREE.BackSide,
+                fog: true, */
             })
             const metaball = new THREE.Mesh(geometry, this.shaderMaterial)
             this.scene.add(metaball)
@@ -110,6 +122,16 @@ export default {
             this.shaderMaterial.uniforms.time.value = 0.00025 * (Date.now() - this.start)
             this.controls.update()
             this.renderer.render(this.scene, this.camera)
+        },
+        updateSessions() {
+            debug('$route:info')(this.itemList)
+        },
+    },
+    watch: {
+        itemList: {
+            handler() {
+                this.updateSessions()
+            },
         },
     },
 }

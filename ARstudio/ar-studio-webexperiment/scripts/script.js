@@ -53,6 +53,9 @@ function streamData() {
     // Start dropping frames into the bucket
     startTracking()
     Time.ms.interval(2000).subscribe(function (elapsedTime) {
+        if (dataTime.lastValue > 1000 * 60 * 10) {
+            return
+        }
         //Diagnostics.log(face.transform)
 
         // Add a time stamp just before pushing the latest stream of frames

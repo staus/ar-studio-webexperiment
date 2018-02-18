@@ -3,8 +3,8 @@
         <!-- This tutorial is gold:
         https://medium.com/codingthesmartway-com-blog/vue-js-2-vue-resource-real-world-vue-application-with-external-api-access-c3de83f25c00 -->
         <!-- <SourceSelection v-on:sourceChanged="this.sourceChanged"></SourceSelection> -->
-        <ThreeJs/>
-        <SessionList :itemList="this.item_list"></SessionList>
+        <ThreeJs :itemList="this.item_list"/>
+        <SessionList :itemList="this.item_list"/>
     </div>
 </template>
 
